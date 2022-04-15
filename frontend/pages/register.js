@@ -14,6 +14,7 @@ export default function Register({ token }) {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [status, setStatus] = useState('')
+    const [studentid, setStudentID] = useState('')
 
     const profileUser = async () => {
         console.log('token: ', token)
@@ -24,12 +25,15 @@ export default function Register({ token }) {
     }
 
     const register = async (req, res) => {
-        try {
+        try{
+            event.preventDefault();
             let result = await axios.post(`${config.URL}/register`,
-                { username, email, password,phone })
+                { username, email, password,phone ,studentid})
             console.log('result: ', result)
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
+            alert(result.data.message)
+            event.submit();
             setStatus(result.data.message)
         }
         catch (e) {
@@ -72,10 +76,19 @@ export default function Register({ token }) {
                 Phone:
             </div>
             <div>
-                <input type="phone"
+                <input type="tels"
                     name="phone"
                     placeholder="phone"
                     onChange={(e) => setPhone(e.target.value)} />
+            </div>
+            <div>
+                StudentID:
+            </div>
+            <div>
+                <input type="text"
+                    name="studentid"
+                    placeholder="studentid"
+                    onChange={(e) => setStudentID(e.target.value)} />
             </div>
 
         </div>
@@ -99,13 +112,15 @@ export default function Register({ token }) {
                 <br />
             Status:  {status}
                 <br /><br />
+                <form onSubmit={register} method='post'>
                 <div className={styles.content}>
                     {registerForm()}
                 </div>
 
                 <div>
-                    <button onClick={register}>Register</button>
+                    <button type='submit'>Register</button>
                 </div>
+                </form>
             </div>
         </Layout>
     )

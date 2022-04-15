@@ -45,6 +45,25 @@ const Profile1 = ({ token }) => {
                     Otherwise, it will be redirect to Login page
                     <br/><br/>
                     {JSON.stringify(user)}
+                    <div>
+                        <p>
+                        <span>Email : </span>
+                        <span>{user.email}</span>
+                        </p>
+                        <p>
+                        <span>Student ID : </span>
+                        <spna>
+                        {user.studentid}
+                        </spna>
+                        </p>
+                        <p>
+                            <span>Tel : </span>
+                            <span>{user.phone}</span>
+                        </p>
+                    
+                    
+                    </div>
+                    
                 </div>
             </div>
         </Layout>
