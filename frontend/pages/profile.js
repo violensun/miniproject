@@ -36,7 +36,7 @@ const Profile1 = ({ token }) => {
                 <title>User profile</title>
             </Head>
             <div className={styles.container}>
-                <Navbar />
+                <Navbar links={token} />
                 <h1>User profile</h1>
                 <div>
                     <b>Token:</b> {token.substring(0, 15)}... <br /><br />
@@ -52,9 +52,9 @@ const Profile1 = ({ token }) => {
                         </p>
                         <p>
                         <span>Student ID : </span>
-                        <spna>
+                        <span>
                         {user.studentid}
-                        </spna>
+                        </span>
                         </p>
                         <p>
                             <span>Tel : </span>

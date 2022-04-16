@@ -8,10 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.8",
     "axios": "^0.21.1",
+    "flowbite": "^1.4.2",
     "js-cookie": "^2.2.1",
     "next": "^12.1.5",
+    "postcss": "^7.0.39",
+    "postcss-import": "^14.1.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

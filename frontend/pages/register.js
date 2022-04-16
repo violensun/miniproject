@@ -14,7 +14,8 @@ export default function Register({ token }) {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [status, setStatus] = useState('')
-    const [studentid, setStudentID] = useState('')
+    const [facebook, setFb] = useState('')
+    const [line, setLine] = useState('')
 
     const profileUser = async () => {
         console.log('token: ', token)
@@ -28,13 +29,16 @@ export default function Register({ token }) {
         try{
             event.preventDefault();
             let result = await axios.post(`${config.URL}/register`,
-                { username, email, password,phone ,studentid})
+                { username, email, password,phone ,facebook,line})
             console.log('result: ', result)
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             alert(result.data.message)
-            event.submit();
+            alert(result.data.status)
             setStatus(result.data.message)
+            if(result.data.message == 'Register success'){
+                window.location.href = '/login'
+            }
         }
         catch (e) {
             console.log(e)
@@ -45,7 +49,7 @@ export default function Register({ token }) {
     const registerForm = () => (
         <div className={styles.gridContainer}>
             <div>
-                Username:
+                Username :
             </div>
             <div>
                 <input type="text"
@@ -55,7 +59,7 @@ export default function Register({ token }) {
                 />
             </div>
             <div>
-                Email:
+                Email :
             </div>
             <div>
                 <input type="email"
@@ -64,7 +68,7 @@ export default function Register({ token }) {
                     onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div>
-                Password:
+                Password :
             </div>
             <div>
                 <input type="password"
@@ -73,7 +77,7 @@ export default function Register({ token }) {
                     onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div>
-                Phone:
+                Phone :
             </div>
             <div>
                 <input type="tels"
@@ -82,13 +86,22 @@ export default function Register({ token }) {
                     onChange={(e) => setPhone(e.target.value)} />
             </div>
             <div>
-                StudentID:
+                Facebook : 
             </div>
             <div>
                 <input type="text"
-                    name="studentid"
-                    placeholder="studentid"
-                    onChange={(e) => setStudentID(e.target.value)} />
+                    name="facebook"
+                    placeholder="facebookID"
+                    onChange={(e) => setFb(e.target.value)} />
+            </div>
+            <div>
+                Line : 
+            </div>
+            <div>
+                <input type="text"
+                    name="line"
+                    placeholder="lineID"
+                    onChange={(e) => setLine(e.target.value)} />
             </div>
 
         </div>
@@ -110,17 +123,15 @@ export default function Register({ token }) {
                 </button>
                 </div>
                 <br />
-            Status:  {status}
+            Status: {status}
                 <br /><br />
-                <form onSubmit={register} method='post'>
                 <div className={styles.content}>
                     {registerForm()}
                 </div>
 
                 <div>
-                    <button type='submit'>Register</button>
+                    <button type='submit' onClick={register}>Register</button>
                 </div>
-                </form>
             </div>
         </Layout>
     )
