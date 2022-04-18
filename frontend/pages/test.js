@@ -29,7 +29,7 @@ const Test = ({ token }) => {
         }
 
     }
- 
+
     return (
         <Layout>
             <Head>
@@ -41,11 +41,14 @@ const Test = ({ token }) => {
                 <div>
                     <b>Token:</b> {token.substring(0, 15)}... <br /><br />
                     This route is protected by token, user is required to login first.
-                    <br/>
+                    <br />
                     Otherwise, it will be redirect to Login page
-                    <br/><br/>
-                    {user.id}
+                    <br /><br />
                     {JSON.stringify(user)}
+                    <p>
+                        <span>{user.id}</span></p>
+                    <p><span>{user.id}</span></p>
+                    <p><span>{user.id}</span></p>
                 </div>
             </div>
         </Layout>
