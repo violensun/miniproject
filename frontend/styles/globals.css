@@ -17,13 +17,3 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-aside.w-64 {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-}
-
-.overflow-y-auto.py-4.px-3.bg-gray-50.rounded.dark\:bg-gray-800 {
-    height: 100%;
-}
