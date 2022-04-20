@@ -5,12 +5,15 @@ import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import config from '../config/config'
+import { useRouter } from 'next/router'
 
 export default function Login({ token }) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState('')
+
+    const router = useRouter()
 
     const login = async (req, res) => {
         try {
@@ -21,6 +24,7 @@ export default function Login({ token }) {
             console.log('result.data:  ', result.data)
             console.log('token:  ', token)
             setStatus(result.status + ': ' + result.data.user.username)
+            router.push('/profile')
         }
         catch (e) {
             console.log('error: ', JSON.stringify(e.response))
@@ -29,22 +33,22 @@ export default function Login({ token }) {
     }
 
     const loginForm = () => (
-        <div className={styles.gridContainer}>
-            <div>
-                Username:
+        <div>
+            <div className='text-fth'>
+                Username
             </div>
             <div>
-                <input type="text"
+                <input className='bg-transparent text-fth focus:border-sec focus:ring-sec' type="text"
                     name="username"
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div>
-                Password:
+            <div className='text-fth'>
+                Password
             </div>
             <div>
-                <input type="password"
+                <input className='bg-transparent text-fth focus:border-sec focus:ring-sec' type="password"
                     name="password"
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} />
@@ -61,20 +65,18 @@ export default function Login({ token }) {
             <Head>
                 <title>Login</title>
             </Head>
-            <div className={styles.container}>
+            <div className='min-h-screen flex'>
                 <Navbar />
-                <h1>Login</h1>
-                <div><b>Token:</b> {token.substring(0, 15)}...
-                <button onClick={copyText}> Copy token </button>
-                </div>
-                <br/>
-                <div>
-                    Status:  {status}
-                </div>
-                <br />
-                {loginForm()}
-                <div>
-                    <button onClick={login}>Login</button>
+                <div className='w-10/12 bg-maincon flex items-center justify-center'>
+                    <div className='bg-sec p-2 rounded'>
+                        <div className='w-full h-full rounded bg-trd p-5 px-20'>
+                        <h1 className='w-full text-center text-3xl my-5 font-bold text-fth'>Login</h1>
+                        {loginForm()}
+                        <div className=' text-center m-5'>
+                            <button className='bg-sec p-3 px-5 rounded text-fth' onClick={login}>Login</button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Layout>

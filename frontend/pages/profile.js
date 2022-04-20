@@ -21,7 +21,7 @@ const Profile1 = ({ token }) => {
             const users = await axios.get(`${config.URL}/profile`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
-            // console.log('user: ', users.data)
+             console.log('user: ', users.data)
             setUser(users.data)
         }
         catch (e) {
@@ -35,36 +35,47 @@ const Profile1 = ({ token }) => {
             <Head>
                 <title>User profile</title>
             </Head>
-            <div className={styles.container}>
+            <div className='min-h-screen flex'>
                 <Navbar links={token} />
-                <h1>User profile</h1>
-                <div>
-                    <b>Token:</b> {token.substring(0, 15)}... <br /><br />
-                    This route is protected by token, user is required to login first.
-                    <br/>
-                    Otherwise, it will be redirect to Login page
-                    <br/><br/>
-                    {JSON.stringify(user)}
-                    <div>
-                        <p>
-                        <span>Email : </span>
-                        <span>{user.email}</span>
-                        </p>
-                        <p>
-                        <span>Student ID : </span>
-                        <span>
-                        {user.studentid}
-                        </span>
-                        </p>
-                        <p>
-                            <span>Tel : </span>
-                            <span>{user.phone}</span>
-                        </p>
-                    
-                    
+                <div className='w-10/12 bg-maincon flex items-center justify-center'>
+                    <div className='bg-sec p-2 rounded'>
+                        <div className='w-full h-full rounded bg-trd p-5 px-20'>
+                            <h1 className='w-full text-center text-3xl my-5 font-bold text-fth'>User profile</h1>
+                            <div>
+                                <div>
+                                    <p className='flex'>
+                    <span className='w-4/12'>
+                                         Name :
+                                        </span>
+                                        <span>
+                                            {user.name}
+                                        </span>
+                                    </p>
+                                    <p className='flex'>
+                    <span className='w-4/12'>Email : </span>
+                                        <span>{user.email}</span>
+                                    </p>
+                                    <p>
+                                        <span>Facebook : </span>
+                                        <span>{user.facebook}</span>
+                                    </p>
+                                    <p className='flex'>
+                    <span className='w-4/12'>Tel : </span>
+                                        <span>{user.phone}</span>
+                                    </p>
+                                        <p className='flex'>
+                    <span className='w-4/12'>
+                                        Line :
+                                        </span>
+                                        <span>
+                                            {user.line}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                </div>
+                </div> 
             </div>
         </Layout>
     )

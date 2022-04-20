@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import config from '../config/config'
+import { useRouter } from 'next/router'
 
 export default function Logout({ token }) {
 
@@ -14,13 +15,15 @@ export default function Logout({ token }) {
         logout()
     }, [])
 
+    const router = useRouter()
+
     const logout = async () => {
         console.log('remove token: ', token)
         let result = await axios.get(`${config.URL}/logout`, { withCredentials: true })
         console.log(result)
         setStatus("Logout successful")
                 if (result)
-                window.location.href = '/login'
+                router.push('/login')
         
     }
  
@@ -29,12 +32,16 @@ export default function Logout({ token }) {
             <Head>
                 <title>User profile</title>
             </Head>
-            <div className={styles.container}>
+            <div className='min-h-screen flex'>
                 <Navbar />
-                <h1>Logout</h1>
+                <div className='w-10/12 bg-maincon flex items-center justify-center'>
+                    <div>
+                    <h1 className='w-full text-center text-3xl my-5 font-bold text-fth'>Logout</h1>
                 <div>
                     <h2> {status}  </h2>
                 </div>
+                    </div>
+                </div>            
             </div>
         </Layout>
     )

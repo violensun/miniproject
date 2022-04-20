@@ -7,10 +7,11 @@ module.exports = {
   theme: {
     colors: {
       'fst' : '#21325E',
-      'sec' : '#3E497A',
-      'trd' : '#F1D00A',
-      'fth' : '#F0F0F0',
+      'sec' : '#FFDD00',
+      'trd' : '#FEF0CA',
+      'fth' : '#9F6E53',
       'midnight': '#121063',
+      'maincon' : '#FEF0CA',
     },
     extend: {
       

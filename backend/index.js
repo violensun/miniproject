@@ -75,15 +75,15 @@ router.post('/register',
     async (req, res) => {
         try {
             const SALT_ROUND = 10
-            const { username, email, password ,phone,facebook,line} = req.body 
-            if (!username || !email || !password || !phone)
+            const { username, email, password ,phone,facebook,line,name} = req.body 
+            if (!username || !email || !password || !name)
                 return res.json( {message: "Cannot register with empty string"})
             if (db.checkExistingUser(username) !== db.NOT_FOUND)
                 return res.json({ message: "Duplicated user" })
 
             let id = (users.users.length) ? users.users[users.users.length - 1].id + 1 : 1
             hash = await bcrypt.hash(password, SALT_ROUND)
-            users.users.push({ id, username, password: hash, email ,phone,facebook,line})
+            users.users.push({ id, username, password: hash, email ,phone,facebook,line,name})
             res.status(200).json({ message: "Register success" })
         } catch {
             res.status(422).json({ message: "Cannot register" })
